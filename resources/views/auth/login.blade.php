@@ -2,18 +2,27 @@
 
 
 @section('titulo')
-    Inicio de Sesión
+    Inicio de Sesión en tu Agenda
 @endsection
 
 @section('contenido')
 <div class="md:flex md:justify-center md:gap-10 md:items-center">
     <div class="md:w-6/12 p-5">
-         <img src="{{ asset('img/explorador.jpg') }}" alt="Imagen registro de usuarios">
+         <img src="{{ asset('img/agenda.png') }}" alt="Imagen registro de usuarios">
     </div>
 
     <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
         
-        <form>
+        <form method="POST" action="{{route('login')}}" novalidate>
+            @csrf
+
+            @if (session('mensaje'))
+                <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2
+                    text-center" >
+                    {{ session('mensaje') }}
+                </p>
+                
+            @endif
 
             <div class="mb-5">
                 <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -23,9 +32,16 @@
                     id="email"
                     name="email"
                     type="text"
-                    placeholder="Correo"
-                    class="border p-3 w-full rounded" 
+                    placeholder="Tu Email de Registro"
+                    class="border p-3 w-full rounded
+                    @error('email') border-red-500
+                    @enderror" 
+                    value="{{old('email')}}"
                 />
+                @error('email')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2
+                    text-center" >{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-5">
                 <label for="password" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -35,9 +51,20 @@
                     id="password"
                     name="password"
                     type="password"
-                    placeholder="Contraseña"
+                    placeholder="Password de Registro"
                     class="border p-3 w-full rounded" 
                 />
+                @error('password')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2
+                    text-center" >{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-5">
+                <input type="checkbox" name="remember" > 
+                    <label class="text-gray-500 text-sm">
+                      Mantener la sesión abierta 
+                    </label>
             </div>
 
             <input

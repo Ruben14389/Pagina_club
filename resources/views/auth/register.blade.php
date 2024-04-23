@@ -1,18 +1,19 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Registrate en Conquistagram
+    Registrate en tu Agenda Virtual
 @endsection
 
 @section('contenido')
     <div class="md:flex md:justify-center md:gap-10 md:items-center">
         <div class="md:w-6/12 p-5">
-             <img src="{{ asset('img/emanuel.jpg') }}" alt="Imagen registro de usuarios">
+             <img src="{{ asset('img/agenda.png') }}" alt="Imagen registro de usuarios">
         </div>
 
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">           
             <form action="{{ route('register') }}" method="POST">
                 @csrf
+                {{-- ------------------------------------name--------------------- --}}
                 <div class="mb-5">
                     <label for="name" class="mb-2 block uppercase text-gray-500 font-bold">
                         Nombre
@@ -22,13 +23,18 @@
                         name="name"
                         type="text"
                         placeholder="Tu Nombre"
-                        class="border p-3 w-full rounded" 
+                        class="border p-3 w-full rounded
+                        @error('name') border-red-500
+                        @enderror" 
+                        value="{{old('name')}}"
                     />
                     @error('name')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2
                         text-center">{{ $message }}</p>
                     @enderror
+                    
                 </div>
+                {{-- ------------------------------------username--------------------- --}}
                 <div class="mb-5">
                     <label for="username" class="mb-2 block uppercase text-gray-500 font-bold">
                         Username
@@ -38,13 +44,17 @@
                         name="username"
                         type="text"
                         placeholder="Tu Nombre de Usuario"
-                        class="border p-3 w-full rounded" 
+                        class="border p-3 w-full rounded
+                        @error('username') border-red-500
+                        @enderror" 
+                        value="{{old('username')}}"
                     />
                     @error('username')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2
-                        text-center">El nombre de usuario es obligatorio</p>
+                        text-center">{{ $message }}</p>
                     @enderror
                 </div>
+                {{-- ------------------------------------email--------------------- --}}
                 <div class="mb-5">
                     <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">
                         Email
@@ -54,13 +64,17 @@
                         name="email"
                         type="text"
                         placeholder="Tu Email de Registro"
-                        class="border p-3 w-full rounded" 
+                        class="border p-3 w-full rounded
+                        @error('email') border-red-500
+                        @enderror" 
+                        value="{{old('email')}}"
                     />
                     @error('email')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2
-                        text-center" >El correo es obligatorio</p>
+                        text-center" >{{ $message }}</p>
                     @enderror
                 </div>
+                {{-- ------------------------------------password--------------------- --}}
                 <div class="mb-5">
                     <label for="password" class="mb-2 block uppercase text-gray-500 font-bold">
                         Password
@@ -72,7 +86,12 @@
                         placeholder="Password de Registro"
                         class="border p-3 w-full rounded" 
                     />
+                    @error('password')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2
+                        text-center" >{{ $message }}</p>
+                    @enderror
                 </div>
+                {{-- ------------------------------------passwordd_confirmation--------------------- --}}
                 <div class="mb-5">
                     <label for="password_confirmation" class="mb-2 block uppercase text-gray-500 font-bold">
                         Repetir Password
@@ -87,10 +106,10 @@
                     @error('password_confirmation')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2
                         {{--text-center" >Es obligatorio repetir la contraseña</p>--}}
-                        text-center" >{{ @message }}</p>
+                        text-center" >{{ $message }}</p>
                     @enderror
                 </div>
-
+                {{-- ----------------------crear cuenta---------------------------------- --}}
                 <input
                     type="submit"
                     value="Crear Cuenta"

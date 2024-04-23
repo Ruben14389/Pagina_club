@@ -23,13 +23,24 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        //----------este codigo es para poner una contraseña randomicamente
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'username' =>fake()->userName(),
         ];
+        //-----------este codigo es para poner una contraseña predeterminada
+        /*return [
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'email_verified_at' => now(),
+            'password' => '12341234',  // Establecer contraseña fija
+            'remember_token' => Str::random(10),
+            'username' =>fake()->userName(),
+        ];*/
     }
 
     /**
