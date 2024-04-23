@@ -41,7 +41,7 @@
                         type="file"
                         class="border p-3 w-full rounded-lg"
                         value=""
-                        accept=".jpg, .jpeg, .png"
+                        accept=""
                     />
                     
                 </div>

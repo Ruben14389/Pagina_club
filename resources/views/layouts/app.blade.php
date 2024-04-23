@@ -18,7 +18,7 @@
              contenido vertical y horizontalmente a la izquierda--}}
                 <nav>
                     {{-- <a class="text-3xl font-black" href="/sistemas/public">COLEGIO AMERICA</a> --}}
-                    <a class="text-3xl font-black" href="{{ route('home') }}">COLEGIO AMERICA</a>
+                    <a class="text-3xl font-black" href="{{ route('home') }}">DEVSTAGRAM</a>
                 </nav>
 
                 @auth

@@ -71,7 +71,6 @@
                         text-center">{{ $message }}</p>
                     @enderror
                 </div>
-
                 <input
                     type="submit"
                     value="Crear Publicación"
